@@ -870,3 +870,27 @@
 **Context**: Post-workflow documentation improvement
 
 ---
+
+## Demo Presentation Generation
+**Timestamp**: 2026-07-08T06:44:35Z
+**User Input**: "이 데모의 각 중요 flow를 소개하는 문구와 화면까지 캡쳐해서 보고자료로 쓰일 ppt를 만들어 줄 수 있어."
+**AI Response**: "Created a Chrome headless capture and PPTX generation script, captured ten key demo flow screens, generated screenshots under reports/demo-presentation/screenshots, generated reports/demo-presentation/table-order-demo.pptx, verified the PPTX archive, and stopped the temporary dev server."
+**Context**: Post-workflow reporting artifact generation
+
+---
+
+## Git Ignore Update
+**Timestamp**: 2026-07-08T06:47:35Z
+**User Input**: ".next 이런건 보통 gitIgnore에 들어가야 되는거 아냐? 빌드할때마다 파일들이 바뀌는거 같아서"
+**AI Response**: "Updated .gitignore to ignore Next.js build/dev artifacts, TypeScript incremental build cache, local SQLite database files, coverage/env files, and generated presentation working directories. Confirmed that .next is already tracked and will require git rm --cached to stop appearing in Git changes."
+**Context**: Post-workflow repository hygiene
+
+---
+
+## Git Tracking Cleanup
+**Timestamp**: 2026-07-08T06:50:07Z
+**User Input**: "이거 알아서 git에서 빠지도록 해줘."
+**AI Response**: "Removed generated artifacts from Git tracking using git rm --cached while preserving local files. Untracked .next, local SQLite database files, TypeScript incremental build cache, and generated presentation working directories. Verified git ls-files returns zero tracked files for those paths and confirmed local .next and data/table-order.sqlite still exist."
+**Context**: Post-workflow repository hygiene
+
+---

@@ -1,1 +1,24 @@
-node_modules
+node_modules/
+
+# Next.js build/dev artifacts
+.next/
+out/
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
+# Local SQLite database files
+data/*.sqlite
+data/*.sqlite-*
+
+# Test/coverage artifacts
+coverage/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Generated presentation working directories
+reports/demo-presentation/chrome-profile/
+reports/demo-presentation/pptx-work/
