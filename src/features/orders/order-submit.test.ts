@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
+import fc from "fast-check";
 import type { CartState, TableContext } from "@/features/customer/types";
 import { addItem, createEmptyCart, toOrderDraft } from "@/features/cart/cart-service";
 import type { MenuItem } from "@/lib/types/domain";
+import { orderItemsInputArb } from "@/test/generators/domain-generators";
 
 const context: TableContext = {
   storeId: "store-1",
@@ -38,5 +40,28 @@ describe("order submit behavior", () => {
 
     expect(draft.totalAmount).toBe(9000);
     expect(cart).toEqual(before);
+  });
+
+  it("PBT: 주문 draft payload 총액은 item line total 합과 일치한다", () => {
+    fc.assert(
+      fc.property(orderItemsInputArb, (items) => {
+        const cart = items.reduce(
+          (current, item) =>
+            addItem(current, {
+              ...menuItem,
+              id: item.menuItemId,
+              name: item.menuName,
+              price: item.unitPrice
+            }),
+          createEmptyCart(context)
+        );
+
+        const draft = toOrderDraft(context, cart);
+
+        expect(draft.items.every((item) => item.quantity > 0)).toBe(true);
+        expect(draft.items.every((item) => item.unitPrice > 0)).toBe(true);
+        expect(draft.totalAmount).toBe(draft.items.reduce((sum, item) => sum + item.lineTotal, 0));
+      })
+    );
   });
 });

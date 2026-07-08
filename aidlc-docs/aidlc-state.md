@@ -4,7 +4,7 @@
 
 - **프로젝트 유형**: Greenfield
 - **시작일**: 2026-06-30T06:25:00Z
-- **현재 단계**: CONSTRUCTION - Realtime Event Code Generation Review
+- **현재 단계**: OPERATIONS - Placeholder
 - **산출물 언어 기준**: 한국어
 
 ## 워크스페이스 상태
@@ -56,13 +56,18 @@
 - [x] CONSTRUCTION - Functional Design (Realtime Event)
 - [x] CONSTRUCTION - NFR Requirements (Realtime Event)
 - [x] CONSTRUCTION - NFR Design (Realtime Event)
-- [ ] CONSTRUCTION - Code Generation (Realtime Event: review pending)
-- [ ] CONSTRUCTION - Infrastructure Design (현재 계획에서는 skip)
-- [ ] CONSTRUCTION - Code Generation
-- [ ] CONSTRUCTION - Build and Test
+- [x] CONSTRUCTION - Code Generation (Realtime Event)
+- [x] CONSTRUCTION - Functional Design (Testing and Quality)
+- [x] CONSTRUCTION - NFR Requirements (Testing and Quality)
+- [x] CONSTRUCTION - NFR Design (Testing and Quality)
+- [x] CONSTRUCTION - Infrastructure Design (skipped: local MVP이며 cloud infrastructure provisioning 없음)
+- [x] CONSTRUCTION - Code Generation (Testing and Quality)
+- [x] CONSTRUCTION - Build and Test
+- [x] OPERATIONS - Placeholder (current AI-DLC workflow has no deployment execution steps)
 
 ## 실행 계획 요약
 
 - **실행할 단계**: User Stories, Application Design, Units Generation, Functional Design, NFR Requirements, NFR Design, Code Generation, Build and Test
-- **건너뛸 단계**: Reverse Engineering (greenfield), Infrastructure Design (local MVP이며 cloud infrastructure provisioning 없음), Operations (placeholder)
-- **다음 승인 후 단계**: Testing and Quality Functional Design
+- **건너뛴 단계**: Reverse Engineering (greenfield), Infrastructure Design (local MVP이며 cloud infrastructure provisioning 없음)
+- **Operations 상태**: Placeholder. 현재 workflow에서는 배포/모니터링 실행 단계가 정의되어 있지 않다.
+- **남은 필수 follow-up**: Node.js `18.18.0` 이상 또는 `20.x` 이상으로 업그레이드 후 `npm run build` 재검증

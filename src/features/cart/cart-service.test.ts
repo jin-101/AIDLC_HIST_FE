@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import fc from "fast-check";
 import type { MenuItem } from "@/lib/types/domain";
 import type { CartState, TableContext } from "@/features/customer/types";
+import { cartItemArb, menuItemArb, positiveQuantityArb } from "@/test/generators/domain-generators";
 import {
   addItem,
   createEmptyCart,
@@ -61,19 +62,16 @@ describe("cart-service", () => {
 
   it("PBT: cart total은 항상 line total 합과 같다", () => {
     fc.assert(
-      fc.property(
-        fc.array(fc.record({ id: fc.uuid(), price: fc.integer({ min: 1, max: 100_000 }) }), { maxLength: 30 }),
-        (items) => {
-          const cart = items.reduce((current, item) => addItem(current, menuItem(item.id, item.price)), createEmptyCart(context));
-          expect(cart.totalAmount).toBe(expectedTotal(cart));
-        }
-      )
+      fc.property(fc.array(menuItemArb, { maxLength: 30 }), (items) => {
+        const cart = items.reduce((current, item) => addItem(current, { ...item, storeId: context.storeId }), createEmptyCart(context));
+        expect(cart.totalAmount).toBe(expectedTotal(cart));
+      })
     );
   });
 
   it("PBT: 수량 조작은 음수 수량을 만들지 않는다", () => {
     fc.assert(
-      fc.property(fc.integer({ min: 1, max: 50 }), fc.integer({ min: 1, max: 80 }), (increaseCount, decreaseCount) => {
+      fc.property(positiveQuantityArb, fc.integer({ min: 1, max: 80 }), (increaseCount, decreaseCount) => {
         let cart = addItem(createEmptyCart(context), menuItem("menu-1", 1000));
         for (let index = 0; index < increaseCount; index += 1) cart = increaseQuantity(cart, "menu-1");
         for (let index = 0; index < decreaseCount; index += 1) cart = decreaseQuantity(cart, "menu-1");
@@ -86,8 +84,8 @@ describe("cart-service", () => {
 
   it("PBT: 주문 초안 총액은 cart total과 일치한다", () => {
     fc.assert(
-      fc.property(fc.array(fc.integer({ min: 1, max: 10_000 }), { minLength: 1, maxLength: 20 }), (prices) => {
-        const cart = prices.reduce((current, price, index) => addItem(current, menuItem(`menu-${index}`, price)), createEmptyCart(context));
+      fc.property(fc.array(cartItemArb, { minLength: 1, maxLength: 20 }), (items) => {
+        const cart = items.reduce((current, item) => addItem(current, menuItem(item.menuItemId, item.unitPrice)), createEmptyCart(context));
         const draft = toOrderDraft(context, cart);
         expect(draft.totalAmount).toBe(cart.totalAmount);
         expect(draft.items.reduce((sum, item) => sum + item.lineTotal, 0)).toBe(cart.totalAmount);
