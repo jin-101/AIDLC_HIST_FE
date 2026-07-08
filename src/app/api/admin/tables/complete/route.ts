@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ok } from "@/lib/api/response";
 import { toApiFailure, validationError } from "@/lib/api/errors";
 import { sessionRepository } from "@/server/repositories/session-repository";
+import { publishTableCompleted } from "@/server/events/event-publisher";
 import type { TableCompletionResult } from "@/features/admin/types";
 
 interface CompleteRequest {
@@ -19,6 +20,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     const completed = sessionRepository.complete(activeSession.id);
     if (!completed || !completed.completedAt) throw validationError("테이블 이용 완료에 실패했습니다.");
+    publishTableCompleted(tableId, completed);
 
     const result: TableCompletionResult = {
       tableId,

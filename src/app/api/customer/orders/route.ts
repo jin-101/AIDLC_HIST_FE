@@ -3,6 +3,7 @@ import { ok } from "@/lib/api/response";
 import { toApiFailure, validationError } from "@/lib/api/errors";
 import type { CreateOrderInput } from "@/lib/types/domain";
 import { orderRepository } from "@/server/repositories/order-repository";
+import { publishOrderCreated } from "@/server/events/event-publisher";
 import type { OrderDraft, SubmitResult } from "@/features/customer/types";
 
 function isPositiveInteger(value: unknown): value is number {
@@ -39,6 +40,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const draft = (await request.json()) as OrderDraft;
     const order = orderRepository.createWithItems(toCreateOrderInput(draft));
+    publishOrderCreated(order);
     const result: SubmitResult = {
       orderId: order.id,
       orderNumber: order.orderNumber,

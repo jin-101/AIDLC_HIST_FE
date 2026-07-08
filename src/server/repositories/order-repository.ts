@@ -69,6 +69,11 @@ export const orderRepository = {
     return row ? mapOrder(row as Record<string, unknown>) : null;
   },
 
+  findById(orderId: string): Order | null {
+    const row = getDatabase().prepare("SELECT * FROM orders WHERE id = ?").get(orderId);
+    return row ? mapOrder(row as Record<string, unknown>) : null;
+  },
+
   delete(orderId: string): void {
     withTransaction((db) => {
       db.prepare("DELETE FROM order_items WHERE order_id = ?").run(orderId);

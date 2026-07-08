@@ -4,7 +4,7 @@
 
 - **프로젝트 유형**: Greenfield
 - **시작일**: 2026-06-30T06:25:00Z
-- **현재 단계**: CONSTRUCTION - Admin Operations Code Generation Review
+- **현재 단계**: CONSTRUCTION - Realtime Event Code Generation Review
 - **산출물 언어 기준**: 한국어
 
 ## 워크스페이스 상태
@@ -52,7 +52,11 @@
 - [x] CONSTRUCTION - Functional Design (Admin Operations)
 - [x] CONSTRUCTION - NFR Requirements (Admin Operations)
 - [x] CONSTRUCTION - NFR Design (Admin Operations)
-- [ ] CONSTRUCTION - Code Generation (Admin Operations: review pending)
+- [x] CONSTRUCTION - Code Generation (Admin Operations)
+- [x] CONSTRUCTION - Functional Design (Realtime Event)
+- [x] CONSTRUCTION - NFR Requirements (Realtime Event)
+- [x] CONSTRUCTION - NFR Design (Realtime Event)
+- [ ] CONSTRUCTION - Code Generation (Realtime Event: review pending)
 - [ ] CONSTRUCTION - Infrastructure Design (현재 계획에서는 skip)
 - [ ] CONSTRUCTION - Code Generation
 - [ ] CONSTRUCTION - Build and Test
@@ -61,4 +65,4 @@
 
 - **실행할 단계**: User Stories, Application Design, Units Generation, Functional Design, NFR Requirements, NFR Design, Code Generation, Build and Test
 - **건너뛸 단계**: Reverse Engineering (greenfield), Infrastructure Design (local MVP이며 cloud infrastructure provisioning 없음), Operations (placeholder)
-- **다음 승인 후 단계**: Realtime Event Functional Design
+- **다음 승인 후 단계**: Testing and Quality Functional Design

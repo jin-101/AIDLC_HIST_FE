@@ -262,6 +262,27 @@ p {
   padding: 16px;
 }
 
+.admin-table-card-highlighted {
+  border-color: #1f6f5b;
+  box-shadow: 0 0 0 3px rgba(31, 111, 91, 0.18);
+}
+
+.admin-realtime-status {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ded6cc;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  min-height: 44px;
+  padding: 10px 14px;
+}
+
+.admin-realtime-status span {
+  color: #4f5b62;
+}
+
 .admin-card-heading,
 .admin-order-row {
   align-items: center;
@@ -305,7 +326,8 @@ p {
   }
 
   .admin-toolbar,
-  .admin-order-row {
+  .admin-order-row,
+  .admin-realtime-status {
     align-items: stretch;
     grid-template-columns: 1fr;
     flex-direction: column;

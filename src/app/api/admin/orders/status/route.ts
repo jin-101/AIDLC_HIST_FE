@@ -3,6 +3,7 @@ import { ok } from "@/lib/api/response";
 import { toApiFailure, validationError } from "@/lib/api/errors";
 import type { OrderStatus } from "@/lib/types/domain";
 import { orderRepository } from "@/server/repositories/order-repository";
+import { publishOrderUpdated } from "@/server/events/event-publisher";
 
 const allowedStatuses: OrderStatus[] = ["waiting", "preparing", "completed"];
 
@@ -23,6 +24,7 @@ export async function PATCH(request: Request): Promise<NextResponse> {
 
     const order = orderRepository.updateStatus(orderId, status as OrderStatus);
     if (!order) throw validationError("주문을 찾을 수 없습니다.");
+    publishOrderUpdated(order);
 
     return NextResponse.json(ok({ order }));
   } catch (error) {

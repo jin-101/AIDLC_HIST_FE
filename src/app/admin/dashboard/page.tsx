@@ -11,6 +11,7 @@ import { filterTableCards } from "@/features/admin/dashboard-mapper";
 import { useAdminDashboard } from "@/features/admin/use-admin-dashboard";
 import { useAdminOrderActions } from "@/features/admin/use-admin-order-actions";
 import { useAdminSession } from "@/features/admin/use-admin-session";
+import { useAdminRealtimeEvents } from "@/features/realtime/use-admin-realtime-events";
 
 export default function AdminDashboardPage() {
   const { session, logout } = useAdminSession();
@@ -19,6 +20,7 @@ export default function AdminDashboardPage() {
   const [tableError, setTableError] = useState<string | null>(null);
   const [tableSubmitting, setTableSubmitting] = useState(false);
   const actions = useAdminOrderActions(reload);
+  const realtime = useAdminRealtimeEvents({ storeId: session?.storeId ?? null, onReload: reload });
 
   const cards = useMemo(() => filterTableCards(snapshot?.tables ?? [], filterText), [filterText, snapshot]);
 
@@ -54,12 +56,18 @@ export default function AdminDashboardPage() {
           </button>
           <Link className="primary-link" data-testid="admin-dashboard-table-link" href="/admin/tables">테이블 관리</Link>
         </div>
+        <div className="admin-realtime-status" data-testid="admin-realtime-status">
+          <strong>실시간</strong>
+          <span>{realtime.connectionState === "open" ? "연결됨" : realtime.connectionState === "connecting" ? "연결 중" : realtime.connectionState === "failed" ? "연결 실패" : "닫힘"}</span>
+          {realtime.lastEventAt ? <span>마지막 이벤트 {new Date(realtime.lastEventAt).toLocaleTimeString("ko-KR")}</span> : null}
+        </div>
         {state === "loading" ? <AdminStatusPanel title="대시보드를 불러오는 중입니다." /> : null}
         {state === "failed" ? <AdminStatusPanel title="대시보드 조회 실패" message={errorMessage} actionLabel="다시 시도" onAction={() => void reload()} /> : null}
         {actions.errorMessage || tableError ? <AdminStatusPanel title="처리 실패" message={actions.errorMessage ?? tableError} /> : null}
         <TableCardGrid
           cards={cards}
           disabled={actions.state === "submitting" || tableSubmitting}
+          highlightedTableIds={realtime.highlightedTableIds}
           onCompleteTable={(tableId) => void completeTable(tableId)}
           onDeleteOrder={(orderId) => void actions.removeOrder(orderId)}
           onStatusChange={(orderId, status) => void actions.changeStatus(orderId, status)}
