@@ -894,3 +894,11 @@
 **Context**: Post-workflow repository hygiene
 
 ---
+
+## Demo Presentation Compatibility Fix
+**Timestamp**: 2026-07-08T06:55:55Z
+**User Input**: "그리고 만들어준 문서가 구글 프레젠테이션에서 안열리던데 확인해줄수있어?"
+**AI Response**: "Inspected the original PPTX, confirmed ZIP integrity but identified that the manually assembled OpenXML structure could be too minimal for Google Slides import. Created scripts/create-demo-ppt-artifact.mjs using the presentation artifact tool, regenerated a Google Slides-friendly PPTX, replaced reports/demo-presentation/table-order-demo.pptx with the compatible file, preserved the original as table-order-demo-legacy-openxml.pptx, generated render previews under reports/demo-presentation/qa, and verified unzip integrity. The optional slides_test.py check could not run because numpy is not installed in the local Python environment."
+**Context**: Post-workflow reporting artifact compatibility
+
+---

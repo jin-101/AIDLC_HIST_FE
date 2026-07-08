@@ -22,3 +22,5 @@ coverage/
 # Generated presentation working directories
 reports/demo-presentation/chrome-profile/
 reports/demo-presentation/pptx-work/
+reports/demo-presentation/qa/
+reports/demo-presentation/*.inspect.ndjson
