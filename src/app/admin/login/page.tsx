@@ -10,7 +10,7 @@ export default function AdminLoginPage() {
   const router = useRouter();
   const { session, state, errorMessage, login, logout } = useAdminSession();
   const [storeCode, setStoreCode] = useState("demo-store");
-  const [password, setPassword] = useState("admin1234");
+  const [password, setPassword] = useState("admin");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

@@ -142,11 +142,17 @@ p {
   align-items: center;
   border: 1px solid #d0c6bb;
   border-radius: 8px;
+  background: #fff;
   color: #263238;
   display: inline-flex;
   font-weight: 700;
   padding: 0 14px;
   text-decoration: none;
+}
+
+.customer-nav a:first-child,
+.admin-nav a:first-child {
+  background: #e8ded1;
 }
 
 .panel,

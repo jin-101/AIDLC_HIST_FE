@@ -838,3 +838,35 @@
 **Context**: Post-workflow documentation update
 
 ---
+
+## UI Runtime Fix - Admin Login Default
+**Timestamp**: 2026-07-08T06:16:34Z
+**User Input**: "다시 실행시켜줘."
+**AI Response**: "Updated the admin login page default password from admin1234 to admin to match seeded demo credentials, then restarted the Next.js dev server on http://127.0.0.1:3000 using Node.js v20.19.5."
+**Context**: Post-workflow UI execution support
+
+---
+
+## UI Navigation Improvement
+**Timestamp**: 2026-07-08T06:19:43Z
+**User Input**: "관리자와 사용자 진입이 처음에 똑같아서 한번 진입하고 나면 빠져나올 수 없는데 돌아갈 수 있는 방법이 없을까>"
+**AI Response**: "Added home navigation links to both CustomerShell and AdminShell, updated navigation styling, verified TypeScript compile and npm test passed, and confirmed the dev server remained running."
+**Context**: Post-workflow UI usability improvement
+
+---
+
+## UI Navigation State Reset
+**Timestamp**: 2026-07-08T06:21:48Z
+**User Input**: "처음으로를 누르면 사용자든 관리자든 로그아웃도 되어야할 것같아."
+**AI Response**: "Updated the CustomerShell and AdminShell home navigation links to clear customer table context, customer cart state, and admin session state before navigating home. Verified TypeScript compile and npm test passed."
+**Context**: Post-workflow UI usability improvement
+
+---
+
+## Documentation Update - Demo Credentials
+**Timestamp**: 2026-07-08T06:23:47Z
+**User Input**: "프로토 타입이니까 관리자 로그인 정보와 고객 테이블 설정 정보도 readme에 남겨 놓는게 낫지 않을까? 아니면 접속을 못할 것 같아서 말이야"
+**AI Response**: "Added a prominent Quick Access section near the top of README.md with customer table setup values and admin login credentials for prototype testing."
+**Context**: Post-workflow documentation improvement
+
+---

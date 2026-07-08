@@ -1,0 +1,15 @@
+{
+  "/api/admin/events/route": "app/api/admin/events/route.js",
+  "/api/admin/login/route": "app/api/admin/login/route.js",
+  "/api/admin/dashboard/route": "app/api/admin/dashboard/route.js",
+  "/api/customer/menu/route": "app/api/customer/menu/route.js",
+  "/api/customer/setup/route": "app/api/customer/setup/route.js",
+  "/api/customer/orders/current/route": "app/api/customer/orders/current/route.js",
+  "/page": "app/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/tables/page": "app/admin/tables/page.js",
+  "/customer/menu/page": "app/customer/menu/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/customer/orders/page": "app/customer/orders/page.js",
+  "/customer/setup/page": "app/customer/setup/page.js"
+}
